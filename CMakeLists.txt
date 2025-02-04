@@ -15,5 +15,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -g -Wall -march=native")
 
 add_library(mpiapptimer SHARED src/mpiapptimer.cpp)
 
-target_include_directories(mpiapptimer PRIVATE ${MPI_CXX_INCLUDE_DIRS} ${SQLite3_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR})
+target_include_directories(mpiapptimer PRIVATE ${MPI_CXX_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR})
+target_link_libraries(mpiapptimer PRIVATE ${MPI_CXX_LIBRARIES})
 set_target_properties(mpiapptimer PROPERTIES SOVERSION 1)
