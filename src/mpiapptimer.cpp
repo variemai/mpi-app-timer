@@ -1,8 +1,12 @@
 #include <iostream>
 #include <mpi.h>
 
+#define MAX_ARG_STRING_SIZE 2048
+#define MAX_ARGS 1024
+#define MAX_ARG_SIZE 64
+
 static int ac;
-static char *av[1024];
+static char *av[MAX_ARGS];
 
 static int ts_rank;
 // static double ts_before_init;
