@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 #include <mpi.h>
 
 #define MAX_ARG_STRING_SIZE 2048
@@ -47,7 +48,7 @@ static void getProcCmdLine(int *ac, char **av) {
     fclose (infile);
   }
   else{
-    fprintf(stderr, "MPI APP TIMER: Error opening file %s FILE:LINE = %d\n",
+    fprintf(stderr, "MPI APP TIMER: Error opening file %s FILE:LINE = %s:%d\n",
             file, __FILE__, __LINE__);
     exit(1);
   }
@@ -114,6 +115,14 @@ extern "C" {
     tmp = av;
     ret = TIME_MPI_Init(&ac, &tmp);
     *ierr = ret;
+  }
+}
+
+extern "C" {
+  void mpi_finalize_(int *ierr) {
+    int rc = 0;
+    rc = TIME_MPI_Finalize();
+    *ierr = rc;
   }
 }
 
